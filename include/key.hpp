@@ -12,6 +12,12 @@ enum class KeyKind {
 struct Key {
   constexpr Key(KeyKind kind, const uint8_t& c, const MediaKeyReport& m) : _kind(kind), _c{c}, _m{m} {}
 
+  constexpr Key(const MediaKeyReport& m)
+      : _kind{KeyKind::Media}, _c{0}, _m{m} {}
+
+  constexpr Key(const uint8_t& c)
+      : _kind{KeyKind::Char}, _c{c}, _m{} {}
+
   constexpr static Key ch(const uint8_t& c) {
     return {KeyKind::Char, c, KEY_MEDIA_MUTE};
   }
@@ -20,7 +26,15 @@ struct Key {
     return {KeyKind::Media, 0, mkp};
   }
 
-  KeyKind _kind;
+  constexpr static Key k(const uint8_t& c) {
+    return {KeyKind::Char, c, KEY_MEDIA_MUTE};
+  }
+
+  constexpr static Key k(const MediaKeyReport& mkp) {
+    return {KeyKind::Media, 0, mkp};
+  }
+
+  const KeyKind _kind;
   const uint8_t _c;
   const MediaKeyReport& _m;
 };
