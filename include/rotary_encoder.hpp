@@ -8,8 +8,8 @@
 namespace rotary_encoder {
 
 // config
-constexpr uint8_t _PIN_A = GPIO_NUM_2;
-constexpr uint8_t _PIN_B = GPIO_NUM_3;
+constexpr uint8_t _PIN_A = GPIO_NUM_4;
+constexpr uint8_t _PIN_B = GPIO_NUM_5;
 constexpr Key _KEY_A = Key::k(KEY_MEDIA_VOLUME_DOWN);
 constexpr Key _KEY_B = Key::k(KEY_MEDIA_VOLUME_UP);
 

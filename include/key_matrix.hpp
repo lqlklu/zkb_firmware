@@ -13,13 +13,13 @@ constexpr size_t _ROW_NUM = 2;
 constexpr size_t _COL_NUM = 2;
 
 constexpr std::array<uint8_t, _ROW_NUM> _ROW_PINS{{
-    GPIO_NUM_6,
-    GPIO_NUM_7,
+    GPIO_NUM_0,
+    GPIO_NUM_1,
 }};
 
 constexpr std::array<uint8_t, _COL_NUM> _COL_PINS{{
-    GPIO_NUM_4,
-    GPIO_NUM_5,
+    GPIO_NUM_2,
+    GPIO_NUM_3,
 }};
 
 constexpr std::array<std::array<Key, _COL_NUM>, _ROW_NUM> _KEY_MAP{{
@@ -52,10 +52,10 @@ void loop() {
           digitalWrite(p, LOW);
         }
       }
+      delay(1); // !important
       for (int j = 0; j < _ROW_NUM; j++) {
         auto cur_read_pin = _ROW_PINS[j];
         int x = digitalRead(cur_read_pin);
-        // Serial.printf("%d,%d:%d\n", i, j, x);
         int last = _key_status[j][i];
         _key_status[j][i] = x;
         if (x == HIGH && last == LOW) {
@@ -65,8 +65,6 @@ void loop() {
         }
       }
     }
-    // Serial.println();
-    delay(10);
   }
 }
 
